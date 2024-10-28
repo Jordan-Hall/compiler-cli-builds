@@ -4867,24 +4867,24 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
     viewQueries.push(...queriesFromDecorator.view.map((q) => checkAndUnwrapQuery(q)));
   }
   let selector = defaultSelector;
-  if (!directive.has("selector") && ((_a = decorator.import) == null ? void 0 : _a.name) && meta) {
+  if (!directive.has("selector") && ((_a = decorator.import) == null ? void 0 : _a.name) && meta && !selector) {
     const decoratorName = decorator.import.name;
     const className = clazz.name.getText().replace(new RegExp(`${decoratorName}$`), "");
     if (decoratorName === "Component") {
       const kebabCaseName = className.split(/(?=[A-Z])/).join("-").toLowerCase();
-      const selectorLiteral = ts22.factory.createStringLiteral(kebabCaseName);
+      const selectorLiteral = ts22.factory.createStringLiteral(`${kebabCaseName}, ${className}`);
       if (ts22.isObjectLiteralExpression(meta)) {
         const selectorProp = ts22.factory.createPropertyAssignment(ts22.factory.createIdentifier("selector"), selectorLiteral);
         ts22.factory.updateObjectLiteralExpression(meta, [
           ...meta.properties,
           selectorProp
         ]);
+        selector = `${kebabCaseName}, ${className}`;
       }
-      directive = reflectObjectLiteral(meta);
     } else if (decoratorName === "Directive") {
       const camelCaseName = className.charAt(0).toLowerCase() + className.slice(1);
       const baseName = camelCaseName.replace(/Directive$/, "").replace(/Attr$/, "");
-      const selectorLiteral = ts22.factory.createStringLiteral(`[${baseName}]`);
+      const selectorLiteral = ts22.factory.createStringLiteral(`[${baseName}], [${className}]`);
       if (ts22.isObjectLiteralExpression(meta)) {
         const selectorProp = ts22.factory.createPropertyAssignment(ts22.factory.createIdentifier("selector"), selectorLiteral);
         ts22.factory.updateObjectLiteralExpression(meta, [
@@ -4892,10 +4892,9 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
           selectorProp
         ]);
       }
-      directive = reflectObjectLiteral(meta);
+      selector = `[${baseName}], [${className}]`;
     }
-  }
-  if (directive.has("selector")) {
+  } else if (directive.has("selector")) {
     const expr = directive.get("selector");
     const resolved = evaluator.evaluate(expr);
     assertLocalCompilationUnresolvedConst(compilationMode, resolved, null, "Unresolved identifier found for @Component.selector field! Did you import this identifier from a file outside of the compilation unit? This is not allowed when Angular compiler runs in local mode. Possible solutions: 1) Move the declarations into a file within the compilation unit, 2) Inline the selector");
@@ -15074,4 +15073,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-NBH45YYS.js.map
+//# sourceMappingURL=chunk-CUYVIM2E.js.map

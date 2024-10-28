@@ -6,7 +6,7 @@ import {
   GLOBAL_DEFS_FOR_TERSER,
   GLOBAL_DEFS_FOR_TERSER_WITH_AOT,
   constructorParametersDownlevelTransform
-} from "./chunk-TSQYH4US.js";
+} from "./chunk-6TKEFQLW.js";
 import {
   DEFAULT_ERROR_CODE,
   DecoratorType,
@@ -33,16 +33,16 @@ import {
   isTsDiagnostic,
   performCompilation,
   readConfiguration
-} from "./chunk-AFO5QY74.js";
+} from "./chunk-FOTO4SQD.js";
 import {
   angularJitApplicationTransform,
   getDownlevelDecoratorsTransform,
   getInitializerApiJitTransform
-} from "./chunk-WN6PGKOB.js";
+} from "./chunk-2QZYU46P.js";
 import {
   OptimizeFor,
   TsCreateProgramDriver
-} from "./chunk-NBH45YYS.js";
+} from "./chunk-CUYVIM2E.js";
 import {
   isLocalCompilationDiagnostics
 } from "./chunk-O2RMLJTP.js";
