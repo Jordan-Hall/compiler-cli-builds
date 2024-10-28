@@ -4867,7 +4867,7 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
     viewQueries.push(...queriesFromDecorator.view.map((q) => checkAndUnwrapQuery(q)));
   }
   let selector = defaultSelector;
-  if (!directive.has("selector") && ((_a = decorator.import) == null ? void 0 : _a.name) && meta && !selector) {
+  if (!directive.has("selector") && ((_a = decorator.import) == null ? void 0 : _a.name) && meta && selector === "ng-component") {
     const decoratorName = decorator.import.name;
     const className = clazz.name.getText().replace(new RegExp(`${decoratorName}$`), "");
     if (decoratorName === "Component") {
@@ -4875,10 +4875,7 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
       const selectorLiteral = ts22.factory.createStringLiteral(`${kebabCaseName}, ${className}`);
       if (ts22.isObjectLiteralExpression(meta)) {
         const selectorProp = ts22.factory.createPropertyAssignment(ts22.factory.createIdentifier("selector"), selectorLiteral);
-        ts22.factory.updateObjectLiteralExpression(meta, [
-          ...meta.properties,
-          selectorProp
-        ]);
+        ts22.factory.updateObjectLiteralExpression(meta, [...meta.properties, selectorProp]);
         selector = `${kebabCaseName}, ${className}`;
       }
     } else if (decoratorName === "Directive") {
@@ -4887,10 +4884,7 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
       const selectorLiteral = ts22.factory.createStringLiteral(`[${baseName}], [${className}]`);
       if (ts22.isObjectLiteralExpression(meta)) {
         const selectorProp = ts22.factory.createPropertyAssignment(ts22.factory.createIdentifier("selector"), selectorLiteral);
-        ts22.factory.updateObjectLiteralExpression(meta, [
-          ...meta.properties,
-          selectorProp
-        ]);
+        ts22.factory.updateObjectLiteralExpression(meta, [...meta.properties, selectorProp]);
       }
       selector = `[${baseName}], [${className}]`;
     }
@@ -15073,4 +15067,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-CUYVIM2E.js.map
+//# sourceMappingURL=chunk-XEWPUAFP.js.map
