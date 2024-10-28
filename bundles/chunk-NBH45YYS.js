@@ -4829,6 +4829,7 @@ function extractDirectiveMetadata(clazz, decorator, reflector, importTracker, ev
   var _a;
   let directive;
   let meta;
+  debugger;
   if (decorator.args === null || decorator.args.length === 0) {
     directive = /* @__PURE__ */ new Map();
   } else if (decorator.args.length !== 1) {
@@ -15073,4 +15074,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-EY6MJ72Q.js.map
+//# sourceMappingURL=chunk-NBH45YYS.js.map
